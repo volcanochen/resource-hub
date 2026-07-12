@@ -1,0 +1,311 @@
+{
+  "name": "resource-hub",
+  "displayName": "Resource Hub",
+  "description": "Quick access to files, paths, web pages and commands",
+  "version": "0.0.5",
+  "publisher": "volcanochen",
+  "author": {
+    "name": "volcanochen",
+    "email": "volcanochen@outlook.com",
+    "url": "https://github.com/volcanochen"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "resource-hub",
+          "title": "Resource Hub",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "resource-hub": [
+        {
+          "id": "resource-hub-view",
+          "name": "My Resources",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "resourceHub.open",
+        "title": "Open Resource",
+        "icon": "$(arrow-right)"
+      },
+      {
+        "command": "resourceHub.openInTerminal",
+        "title": "Open in Terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "resourceHub.copyTarget",
+        "title": "Copy Target",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "resourceHub.rename",
+        "title": "Rename",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "resourceHub.editResource",
+        "title": "Edit Resource",
+        "icon": "$(settings-edit)"
+      },
+      {
+        "command": "resourceHub.moveToGroup",
+        "title": "Move to Group",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "resourceHub.addFile",
+        "title": "ResourceHub: Add File",
+        "icon": "$(file)"
+      },
+      {
+        "command": "resourceHub.addPath",
+        "title": "ResourceHub: Add Folder",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "resourceHub.addWebPage",
+        "title": "ResourceHub: Add Web Page",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "resourceHub.addCommand",
+        "title": "ResourceHub: Add Command",
+        "icon": "$(code)"
+      },
+      {
+        "command": "resourceHub.addGroup",
+        "title": "ResourceHub: New Group",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "resourceHub.addFileToGroup",
+        "title": "Add File to Group",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "resourceHub.addPathToGroup",
+        "title": "Add Folder to Group",
+        "icon": "$(folder-add)"
+      },
+      {
+        "command": "resourceHub.addWebPageToGroup",
+        "title": "Add Web Page to Group",
+        "icon": "$(link-add)"
+      },
+      {
+        "command": "resourceHub.addCommandToGroup",
+        "title": "Add Command to Group",
+        "icon": "$(code-add)"
+      },
+      {
+        "command": "resourceHub.renameGroup",
+        "title": "Rename Group",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "resourceHub.delete",
+        "title": "Delete",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "resourceHub.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "resourceHub.searchAndOpen",
+        "title": "Resource Hub: Search and Open",
+        "icon": "$(search)"
+      },
+      {
+        "command": "resourceHub.showLog",
+        "title": "Resource Hub: Show Output Log"
+      },
+      {
+        "command": "resourceHub.addFileToContext",
+        "title": "Add to ResourceHub: File",
+        "icon": "$(file)"
+      },
+      {
+        "command": "resourceHub.addPathToContext",
+        "title": "Add to ResourceHub: Folder",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "resourceHub.addSelectionAsFile",
+        "title": "Resource Hub: Add Selection as File",
+        "icon": "$(file-code)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "resourceHub.refresh",
+          "group": "navigation@1"
+        },
+        {
+          "command": "resourceHub.addFile",
+          "group": "1_resourcehub@1"
+        },
+        {
+          "command": "resourceHub.addPath",
+          "group": "1_resourcehub@2"
+        },
+        {
+          "command": "resourceHub.addWebPage",
+          "group": "1_resourcehub@3"
+        },
+        {
+          "command": "resourceHub.addCommand",
+          "group": "1_resourcehub@4"
+        },
+        {
+          "command": "resourceHub.addGroup",
+          "group": "1_resourcehub@5"
+        },
+        {
+          "command": "resourceHub.searchAndOpen",
+          "group": "1_resourcehub@6"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "resourceHub.open",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-/",
+          "group": "1_open@1"
+        },
+        {
+          "command": "resourceHub.openInTerminal",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-(command|path)$/",
+          "group": "1_open@2"
+        },
+        {
+          "command": "resourceHub.copyTarget",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-/",
+          "group": "1_open@3"
+        },
+        {
+          "command": "resourceHub.rename",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-/",
+          "group": "2_edit@1"
+        },
+        {
+          "command": "resourceHub.editResource",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-/",
+          "group": "2_edit@2"
+        },
+        {
+          "command": "resourceHub.moveToGroup",
+          "when": "view == resource-hub-view && viewItem =~ /^entry-/",
+          "group": "3_move@1"
+        },
+        {
+          "command": "resourceHub.delete",
+          "when": "view == resource-hub-view",
+          "group": "9_delete@1"
+        },
+        {
+          "command": "resourceHub.addFileToGroup",
+          "when": "view == resource-hub-view && viewItem == group",
+          "group": "4_add@1"
+        },
+        {
+          "command": "resourceHub.addPathToGroup",
+          "when": "view == resource-hub-view && viewItem == group",
+          "group": "4_add@2"
+        },
+        {
+          "command": "resourceHub.addWebPageToGroup",
+          "when": "view == resource-hub-view && viewItem == group",
+          "group": "4_add@3"
+        },
+        {
+          "command": "resourceHub.addCommandToGroup",
+          "when": "view == resource-hub-view && viewItem == group",
+          "group": "4_add@4"
+        },
+        {
+          "command": "resourceHub.renameGroup",
+          "when": "view == resource-hub-view && viewItem == group",
+          "group": "5_manage@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "resourceHub.addFileToContext",
+          "group": "1_add@1"
+        },
+        {
+          "command": "resourceHub.addPathToContext",
+          "group": "1_add@2"
+        },
+        {
+          "submenu": "9_resourcehub",
+          "group": "navigation@100"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "resourceHub.addSelectionAsFile",
+          "group": "1_add@1"
+        },
+        {
+          "submenu": "9_resourcehub",
+          "group": "navigation@100",
+          "when": "editorHasSelection"
+        }
+      ],
+      "9_resourcehub": [
+        {
+          "command": "resourceHub.addFileToContext",
+          "title": "%resourceHub.addFile%",
+          "group": "add@1"
+        },
+        {
+          "command": "resourceHub.addPathToContext",
+          "title": "%resourceHub.addPath%",
+          "group": "add@2"
+        },
+        {
+          "command": "resourceHub.addSelectionAsFile",
+          "title": "%resourceHub.addSelectionAsFile%",
+          "group": "add@3"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "vsix": "node scripts/build-vsix.mjs",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.0.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.4.0",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
